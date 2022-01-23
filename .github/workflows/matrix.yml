@@ -10,106 +10,91 @@ jobs:
     name: Start "brew test-bot" workflow on a self-hosted AWS EC2 runner (macOS, Monterey, arm64)
     if: ${{ false }}
     concurrency: macos-arm64-ec2
-    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@main
+    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@ec2runners
     with:
       os-type: macos
       os-gen: monterey
       os-arch: arm64
-      ec2-instance-type: mac1.metal
-      ec2-image-id: ami-056dc9ac02058c12d
+      ec2-launch-template: github-runner-macos-monterey-arm64
     secrets:
-      GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_SECURITY_GROUP_ID: ${{ secrets.AWS_SECURITY_GROUP_ID }}
-      AWS_SUBNET_ID: ${{ secrets.AWS_SUBNET_ID }}
       RUNNER_TOKEN: ${{ secrets.MACOS_ARM64_EC2_RUNNER_TOKEN }}
 
   test-bot-macos-big-sur-arm64-ec2:
     name: Start "brew test-bot" workflow on a self-hosted AWS EC2 runner (macOS, Big Sur, arm64)
     if: ${{ false }}
     concurrency: macos-arm64-ec2
-    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@main
+    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@ec2runners
     with:
       os-type: macos
       os-gen: big-sur
       os-arch: arm64
-      ec2-instance-type: mac1.metal
-      ec2-image-id: ami-0a35a79762786ea7f
+      ec2-launch-template: github-runner-macos-big-sur-arm64
     secrets:
-      GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_SECURITY_GROUP_ID: ${{ secrets.AWS_SECURITY_GROUP_ID }}
-      AWS_SUBNET_ID: ${{ secrets.AWS_SUBNET_ID }}
       RUNNER_TOKEN: ${{ secrets.MACOS_ARM64_EC2_RUNNER_TOKEN }}
 
   test-bot-macos-monterey-x86_64-ec2:
     name: Start "brew test-bot" workflow on a self-hosted AWS EC2 runner (macOS, Monterey, x86_64)
     concurrency: macos-x86_64-ec2
-    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@main
+    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@ec2runners
     with:
       os-type: macos
       os-gen: monterey
       os-arch: x86_64
-      ec2-instance-type: mac1.metal
-      ec2-image-id: ami-056dc9ac02058c12d
+      ec2-launch-template: github-runner-macos-monterey-x86_64
     secrets:
-      GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_SECURITY_GROUP_ID: ${{ secrets.AWS_SECURITY_GROUP_ID }}
-      AWS_SUBNET_ID: ${{ secrets.AWS_SUBNET_ID }}
       RUNNER_TOKEN: ${{ secrets.MACOS_X86_64_EC2_RUNNER_TOKEN }}
 
   test-bot-macos-big-sur-x86_64-ec2:
     name: Start "brew test-bot" workflow on a self-hosted AWS EC2 runner (macOS, Big Sur, x86_64)
     if: ${{ false }}
     concurrency: macos-x86_64-ec2
-    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@main
+    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@ec2runners
     with:
       os-type: macos
       os-gen: big-sur
       os-arch: x86_64
-      ec2-instance-type: mac1.metal
-      ec2-image-id: ami-0a35a79762786ea7f
+      ec2-launch-template: github-runner-macos-big-sur-x86_64
     secrets:
-      GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_SECURITY_GROUP_ID: ${{ secrets.AWS_SECURITY_GROUP_ID }}
-      AWS_SUBNET_ID: ${{ secrets.AWS_SUBNET_ID }}
       RUNNER_TOKEN: ${{ secrets.MACOS_X86_64_EC2_RUNNER_TOKEN }}
 
   test-bot-macos-catalina-x86_64-ec2:
     name: Start "brew test-bot" workflow on a self-hosted AWS EC2 runner (macOS, Catalina, x86_64)
     if: ${{ false }}
     concurrency: macos-x86_64-ec2
-    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@main
+    uses: Altinity/homebrew-clickhouse/.github/workflows/test.yml@ec2runners
     with:
       os-type: macos
       os-gen: catalina
       os-arch: x86_64
-      ec2-instance-type: mac1.metal
-      ec2-image-id: ami-0458f0fc32e5edfda
+      ec2-launch-template: github-runner-macos-catalina-x86_64
     secrets:
-      GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_SECURITY_GROUP_ID: ${{ secrets.AWS_SECURITY_GROUP_ID }}
-      AWS_SUBNET_ID: ${{ secrets.AWS_SUBNET_ID }}
       RUNNER_TOKEN: ${{ secrets.MACOS_X86_64_EC2_RUNNER_TOKEN }}
 
   pr-pull-all:
     name: Publish bottles
     if: ${{ github.event.pull_request.draft == false }}
     concurrency: repo-modification
-    uses: Altinity/homebrew-clickhouse/.github/workflows/publish.ymlaws-self-hosted-runners
+    uses: Altinity/homebrew-clickhouse/.github/workflows/publish.yml@ec2runners
     needs:
       - test-bot-macos-monterey-arm64-ec2
       - test-bot-macos-big-sur-arm64-ec2
@@ -120,4 +105,4 @@ jobs:
       pull-request-number: ${{ github.event.pull_request.number }}
       origin-branch-to-delete: ${{ github.event.pull_request.head.repo.fork && '' || github.event.pull_request.head.ref }}
     secrets:
-      GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
